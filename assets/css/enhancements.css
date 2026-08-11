@@ -83,58 +83,6 @@ body {
   visibility: visible !important;
 }
 
-/* 3. Live Market Ticker Strip */
-.market-ticker-strip {
-  background: #0f172a;
-  color: #ffffff;
-  font-size: 13px;
-  overflow: hidden;
-  white-space: nowrap;
-  padding: 8px 0;
-  border-bottom: 1px solid #1e293b;
-}
-
-.ticker-inner {
-  display: inline-flex;
-  gap: 32px;
-  animation: tickerSlide 35s linear infinite;
-}
-
-.ticker-inner:hover {
-  animation-play-state: paused;
-}
-
-@keyframes tickerSlide {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.ticker-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.ticker-name {
-  font-weight: 600;
-  color: #94a3b8;
-}
-
-.ticker-val {
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.ticker-change.up {
-  color: #10b981;
-  font-weight: 600;
-}
-
-.ticker-change.down {
-  color: #ef4444;
-  font-weight: 600;
-}
-
 /* 4. Hero Section Typography */
 .home-heading-text h1,
 main h1,
