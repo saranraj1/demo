@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://demo-opal-sigma-80.vercel.app/sitemap.xml
-Disallow: /assets/
+
+Sitemap: https://[PRODUCTION_DOMAIN]/sitemap.xml

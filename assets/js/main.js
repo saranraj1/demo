@@ -1,8 +1,23 @@
 /**
- * Motilal Oswal Web Application - Core Interactive Controller
+ * [CLIENT_NAME] - Partner Platform for Motilal Oswal Financial Services
+ * Core Interactive Controller & Partner Analytics Tracker
  */
 
+/* ==========================================================================
+   0. Partner Configuration & Tracking Architecture
+   ========================================================================== */
+window.PARTNER_CONFIG = {
+  clientName: "[CLIENT_NAME]",
+  productionDomain: "[PRODUCTION_DOMAIN]", // e.g. "https://demo-opal-sigma-80.vercel.app" or client domain
+  gaMeasurementId: "[GA4_MEASUREMENT_ID]", // Replace with actual GA4 ID (e.g. "G-XXXXXXXXXX")
+  partnerName: "motilal_oswal",
+  defaultUtmSource: "partner_website",
+  defaultUtmMedium: "referral",
+  partnerReferralCode: "[PARTNER_REFERRAL_CODE]" // Optional referral / sub-broker code
+};
+
 document.addEventListener('DOMContentLoaded', () => {
+  initPartnerTracking();
   initStickyHeader();
   initMobileDrawer();
   initSearchBox();
@@ -15,7 +30,114 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. Sticky Header
+   1. Partner CTA Tracking & Safe Outbound UTM Engine
+   ========================================================================== */
+function initPartnerTracking() {
+  const cfg = window.PARTNER_CONFIG;
+
+  // 1. If valid GA4 Measurement ID is provided, dynamically inject gtag
+  if (cfg.gaMeasurementId && 
+      cfg.gaMeasurementId.startsWith('G-') && 
+      !cfg.gaMeasurementId.includes('X') && 
+      !cfg.gaMeasurementId.includes('[') && 
+      !window.gtag) {
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(cfg.gaMeasurementId)}`;
+    document.head.appendChild(gaScript);
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function() { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', cfg.gaMeasurementId, {
+      send_page_view: true,
+      anonymize_ip: true
+    });
+  }
+
+  // 2. Centralized Partner Click Dispatcher
+  window.trackPartnerClick = function(ctaName, ctaLocation, destinationUrl) {
+    const eventPayload = {
+      partner: cfg.partnerName || 'motilal_oswal',
+      page: window.location.pathname || '/',
+      cta_name: ctaName || 'general_cta',
+      cta_location: ctaLocation || 'page_body',
+      destination: destinationUrl || 'https://www.motilaloswal.com/',
+      client: cfg.clientName || '[CLIENT_NAME]',
+      timestamp: new Date().toISOString()
+    };
+
+    // Dispatch to Google Analytics 4
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'partner_click', eventPayload);
+    }
+
+    // Dispatch Custom DOM Event for custom telemetry or analytics wrappers
+    window.dispatchEvent(new CustomEvent('partner_click', { detail: eventPayload }));
+
+    // Development Console Log
+    console.log('[Partner Analytics] Event: partner_click', eventPayload);
+  };
+
+  // 3. Safe Outbound UTM Parameter Appender
+  window.appendPartnerUtm = function(originalUrl, ctaLocation, ctaName) {
+    try {
+      const urlObj = new URL(originalUrl, window.location.origin);
+      if (urlObj.hostname.includes('motilaloswal.com')) {
+        if (!urlObj.searchParams.has('utm_source')) {
+          urlObj.searchParams.set('utm_source', cfg.defaultUtmSource);
+        }
+        if (!urlObj.searchParams.has('utm_medium')) {
+          urlObj.searchParams.set('utm_medium', cfg.defaultUtmMedium);
+        }
+        if (!urlObj.searchParams.has('utm_campaign')) {
+          urlObj.searchParams.set('utm_campaign', (ctaName || 'demat_referral').toLowerCase().replace(/\s+/g, '_'));
+        }
+        if (!urlObj.searchParams.has('utm_content')) {
+          urlObj.searchParams.set('utm_content', (ctaLocation || 'button').toLowerCase().replace(/\s+/g, '_'));
+        }
+        if (cfg.partnerReferralCode && !cfg.partnerReferralCode.includes('[')) {
+          urlObj.searchParams.set('partner_code', cfg.partnerReferralCode);
+        }
+        return urlObj.toString();
+      }
+    } catch (e) {
+      // Return original URL if parsing fails
+    }
+    return originalUrl;
+  };
+
+  // 4. Intercept all outbound Motilal Oswal links
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    if (href.includes('motilaloswal.com') || link.hasAttribute('data-partner-cta')) {
+      const ctaName = link.getAttribute('data-cta-name') || link.innerText.trim() || 'Partner Link';
+      const ctaLocation = link.getAttribute('data-cta-location') || 
+                          link.closest('header, footer, .section, .mo-modal-backdrop')?.className || 'page_section';
+
+      window.trackPartnerClick(ctaName, ctaLocation, href);
+
+      // Enforce outbound link safety
+      if (!link.getAttribute('rel')) {
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+
+      // Append UTM parameters safely
+      const updatedHref = window.appendPartnerUtm(href, ctaLocation, ctaName);
+      if (updatedHref !== href) {
+        link.setAttribute('href', updatedHref);
+      }
+    }
+  });
+}
+
+/* ==========================================================================
+   2. Sticky Header
    ========================================================================== */
 function initStickyHeader() {
   const header = document.querySelector('.header-wrapper');
@@ -31,7 +153,7 @@ function initStickyHeader() {
 }
 
 /* ==========================================================================
-   2. Mobile Drawer Navigation
+   3. Mobile Drawer Navigation
    ========================================================================== */
 function initMobileDrawer() {
   const menuIcon = document.querySelector('.menu-icon');
@@ -57,14 +179,13 @@ function initMobileDrawer() {
   if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
   overlay.addEventListener('click', closeDrawer);
 
-  // Close when clicking internal links
   drawer.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeDrawer);
   });
 }
 
 /* ==========================================================================
-   3. Live Search & Category Filtering
+   4. Live Search & Category Filtering
    ========================================================================== */
 function initSearchBox() {
   const searchInput = document.getElementById('mo-search-input');
@@ -75,12 +196,10 @@ function initSearchBox() {
 
   if (!searchInput || !searchContainer) return;
 
-  // Show dropdown on focus
   searchInput.addEventListener('focus', () => {
     searchContainer.classList.add('active');
   });
 
-  // Hide on back button or outside click
   if (backBtn) {
     backBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -95,7 +214,6 @@ function initSearchBox() {
     }
   });
 
-  // Category Tab Switching
   categoryItems.forEach(item => {
     item.addEventListener('click', () => {
       categoryItems.forEach(c => c.classList.remove('active'));
@@ -114,7 +232,6 @@ function initSearchBox() {
     });
   });
 
-  // Live filter query
   searchInput.addEventListener('input', (e) => {
     const query = e.target.value.toLowerCase().trim();
     const activeBlock = document.querySelector('.mo-search-result-block.mo-result-show') || resultBlocks[0];
@@ -144,14 +261,14 @@ function initSearchBox() {
 }
 
 /* ==========================================================================
-   4. Demat Registration Forms & OTP Simulation
+   5. Demat Registration Forms & Lead Tracking
    ========================================================================== */
 function initDematForms() {
   const homeForm = document.querySelector('.landing-demat-form-wrapper form');
   if (homeForm) {
     homeForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      handleDematSubmit(homeForm);
+      handleDematSubmit(homeForm, 'hero_demat_form');
     });
   }
 
@@ -159,12 +276,12 @@ function initDematForms() {
   if (swipeForm) {
     swipeForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      handleDematSubmit(swipeForm);
+      handleDematSubmit(swipeForm, 'floating_demat_bar');
     });
   }
 }
 
-function handleDematSubmit(formElement) {
+function handleDematSubmit(formElement, locationContext = 'form') {
   const nameInput = formElement.querySelector('#contactname') || formElement.querySelector('#swipename') || formElement.querySelector('input[type="text"]');
   const mobileInput = formElement.querySelector('#contactmob') || formElement.querySelector('#swipemob') || formElement.querySelector('input[type="tel"]');
   const submitBtn = formElement.querySelector('.submit-btn') || formElement.querySelector('.swipe-button') || formElement.querySelector('button[type="submit"]');
@@ -172,7 +289,6 @@ function handleDematSubmit(formElement) {
   const nameVal = nameInput ? nameInput.value.trim() : '';
   const mobileVal = mobileInput ? mobileInput.value.trim() : '';
 
-  // Validation
   if (nameInput && nameVal.length < 2) {
     showToast('Please enter your full name', 'error');
     nameInput.focus();
@@ -185,7 +301,11 @@ function handleDematSubmit(formElement) {
     return;
   }
 
-  // Button loading state
+  // Track Demat Lead Initiation
+  if (typeof window.trackPartnerClick === 'function') {
+    window.trackPartnerClick('demat_lead_initiated', locationContext, 'https://www.motilaloswal.com/open-demat-account');
+  }
+
   const originalText = submitBtn ? submitBtn.innerHTML : 'Submit';
   if (submitBtn) {
     submitBtn.disabled = true;
@@ -197,12 +317,11 @@ function handleDematSubmit(formElement) {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalText;
     }
-    // Open OTP Verification Modal
-    openOtpModal(mobileVal, nameVal);
+    openOtpModal(mobileVal, nameVal, locationContext);
   }, 700);
 }
 
-function openOtpModal(mobile, name) {
+function openOtpModal(mobile, name, locationContext = 'modal') {
   const otpModal = document.getElementById('otpVerificationModal');
   const otpMobileSpan = document.getElementById('otpMobileNumber');
   if (!otpModal) return;
@@ -213,7 +332,6 @@ function openOtpModal(mobile, name) {
 
   openModal('otpVerificationModal');
 
-  // Auto focus first OTP box
   const firstOtp = otpModal.querySelector('.otp-digit-input');
   if (firstOtp) {
     firstOtp.value = '';
@@ -222,7 +340,7 @@ function openOtpModal(mobile, name) {
 }
 
 /* ==========================================================================
-   5. Interactive SIP & Wealth Financial Calculator
+   6. Interactive SIP & Wealth Financial Calculator
    ========================================================================== */
 function initSipCalculator() {
   const amountSlider = document.getElementById('sipAmountSlider');
@@ -250,7 +368,6 @@ function initSipCalculator() {
     const i = (annualRate / 12) / 100;
     const n = years * 12;
 
-    // SIP Formula: M = P * [ ( (1 + i)^n - 1 ) / i ] * (1 + i)
     let totalWealth = 0;
     if (i > 0) {
       totalWealth = P * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
@@ -261,7 +378,6 @@ function initSipCalculator() {
     const totalInvested = P * n;
     const estimatedReturns = Math.max(0, totalWealth - totalInvested);
 
-    // Update displays
     if (amountDisplay) amountDisplay.textContent = `₹${P.toLocaleString('en-IN')}`;
     if (rateDisplay) rateDisplay.textContent = `${annualRate}%`;
     if (yearsDisplay) yearsDisplay.textContent = `${years} ${years === 1 ? 'Year' : 'Years'}`;
@@ -270,7 +386,6 @@ function initSipCalculator() {
     if (returnsDisplay) returnsDisplay.textContent = `₹${Math.round(estimatedReturns).toLocaleString('en-IN')}`;
     if (wealthDisplay) wealthDisplay.textContent = `₹${Math.round(totalWealth).toLocaleString('en-IN')}`;
 
-    // Update visual bars
     if (investedBar && returnsBar && totalWealth > 0) {
       const investedPct = (totalInvested / totalWealth) * 100;
       const returnsPct = (estimatedReturns / totalWealth) * 100;
@@ -283,12 +398,11 @@ function initSipCalculator() {
   rateSlider.addEventListener('input', calculateSip);
   yearsSlider.addEventListener('input', calculateSip);
 
-  // Initial calculation
   calculateSip();
 }
 
 /* ==========================================================================
-   6. Highlights Carousel Slider
+   7. Highlights Carousel Slider
    ========================================================================== */
 function initCarousel() {
   const wrap = document.getElementById('highlightsCarousel') || document.querySelector('.highlights-carousel-wrap');
@@ -346,7 +460,6 @@ function initCarousel() {
   wrap.addEventListener('mouseenter', stopAuto);
   wrap.addEventListener('mouseleave', startAuto);
 
-  // Touch Swipe Support
   let startX = 0;
   wrap.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
@@ -368,26 +481,29 @@ function initCarousel() {
 }
 
 /* ==========================================================================
-   7. Modals (Demat, OTP, Login)
+   8. Modals (Demat, OTP, Login) & Outbound Partner Navigation
    ========================================================================== */
 function initModals() {
-  // Bind all demat trigger buttons
-  document.querySelectorAll('[data-open-modal="dematModal"], a[href*="open-demat-account"], button[data-href*="open-demat"]').forEach(btn => {
+  document.querySelectorAll('[data-open-modal="dematModal"]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      if (typeof window.trackPartnerClick === 'function') {
+        window.trackPartnerClick('open_demat_modal_triggered', 'navigation_or_button', 'demat_modal');
+      }
       openModal('dematModal');
     });
   });
 
-  // Bind login trigger buttons
   document.querySelectorAll('[data-open-modal="loginModal"], .login-button, .partner-button').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      if (typeof window.trackPartnerClick === 'function') {
+        window.trackPartnerClick('login_modal_triggered', 'header_login_button', 'login_modal');
+      }
       openModal('loginModal');
     });
   });
 
-  // Close buttons
   document.querySelectorAll('.mo-modal-close, [data-modal-close]').forEach(btn => {
     btn.addEventListener('click', () => {
       const modal = btn.closest('.mo-modal-backdrop');
@@ -395,14 +511,12 @@ function initModals() {
     });
   });
 
-  // Backdrop click
   document.querySelectorAll('.mo-modal-backdrop').forEach(modal => {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal(modal.id);
     });
   });
 
-  // Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       document.querySelectorAll('.mo-modal-backdrop.open').forEach(modal => {
@@ -411,7 +525,6 @@ function initModals() {
     }
   });
 
-  // OTP Digits auto-advance
   const otpInputs = document.querySelectorAll('.otp-digit-input');
   otpInputs.forEach((input, index) => {
     input.addEventListener('input', (e) => {
@@ -439,11 +552,15 @@ function initModals() {
       otpVerifyBtn.disabled = true;
       otpVerifyBtn.innerHTML = '<span class="spinner" style="width:16px;height:16px;border-width:2px;margin-right:6px;"></span> Verifying...';
 
+      if (typeof window.trackPartnerClick === 'function') {
+        window.trackPartnerClick('otp_verified_demat_lead', 'otp_modal', 'https://www.motilaloswal.com/open-demat-account');
+      }
+
       setTimeout(() => {
         otpVerifyBtn.disabled = false;
         otpVerifyBtn.innerHTML = 'Verified Successfully ✓';
         closeModal('otpVerificationModal');
-        showToast('🎉 Congratulations! Your Demat application has been initiated. Our investment advisor will connect with you shortly.', 'success', 6000);
+        showToast('🎉 Application received! Connecting you with Motilal Oswal account opening specialist.', 'success', 6000);
       }, 1000);
     });
   }
@@ -464,7 +581,7 @@ function closeModal(modalId) {
 }
 
 /* ==========================================================================
-   8. Floating Bottom Demat Bar
+   9. Floating Bottom Demat Bar
    ========================================================================== */
 function initFloatingBar() {
   const bar = document.querySelector('.floating-demat-bar');
@@ -491,7 +608,7 @@ function initFloatingBar() {
 }
 
 /* ==========================================================================
-   9. Accordions (FAQ & Footer directories)
+   10. Accordions
    ========================================================================== */
 function initAccordions() {
   document.querySelectorAll('.accordion-header').forEach(header => {
@@ -504,31 +621,10 @@ function initAccordions() {
       }
     });
   });
-
-  // FAQ Accordions
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      if (!item) return;
-      const isActive = item.classList.contains('active');
-      const answer = item.querySelector('.faq-answer');
-      const icon = item.querySelector('.faq-icon');
-
-      if (isActive) {
-        item.classList.remove('active');
-        if (answer) answer.style.display = 'none';
-        if (icon) icon.textContent = '+';
-      } else {
-        item.classList.add('active');
-        if (answer) answer.style.display = 'block';
-        if (icon) icon.textContent = '−';
-      }
-    });
-  });
 }
 
 /* ==========================================================================
-   10. Toast Notification System
+   11. Toast Notification System
    ========================================================================== */
 function showToast(message, type = 'info', duration = 3500) {
   let container = document.querySelector('.mo-toast-container');
