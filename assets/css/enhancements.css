@@ -86,19 +86,21 @@ body {
 /* 3. Hero Section Typography */
 .home-heading-text h1,
 main h1,
-.hero-bg h1 {
-  font-family: var(--font-secondary) !important;
+.hero-bg h1,
+#thinkequity-thinkmotilal-oswal {
+  font-family: var(--font-secondary, 'Playfair Display', serif) !important;
   font-size: 52px !important;
-  font-weight: 600 !important;
-  line-height: 1.15 !important;
+  font-weight: 500 !important;
+  line-height: 1.36 !important;
   color: var(--color-navy) !important;
-  margin-top: 15px !important;
-  margin-bottom: 24px !important;
-  letter-spacing: -0.5px !important;
+  margin-top: 26px !important;
+  margin-bottom: 34px !important;
+  letter-spacing: -0.3px !important;
 }
 
-.home-heading-text h1 strong {
-  font-weight: 600 !important;
+.home-heading-text h1 strong,
+#thinkequity-thinkmotilal-oswal strong {
+  font-weight: 500 !important;
   color: var(--color-navy) !important;
 }
 
