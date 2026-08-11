@@ -1,0 +1,22 @@
+/* Breadcrumb Component Styles */
+.breadcrumb-wrapper {
+  padding: 12px 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+.breadcrumb-wrapper ol {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 8px;
+}
+.breadcrumb-wrapper li+li:before {
+  content: "/";
+  margin-right: 8px;
+  color: #9ca3af;
+}
+.breadcrumb-wrapper a {
+  color: #2b2e8c;
+  text-decoration: none;
+}

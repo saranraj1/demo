@@ -1,0 +1,296 @@
+.description-cards {
+    margin: 24px 0;
+}
+
+.cardstyle {
+    box-shadow: var(--primary-boxshadow);
+    border-radius: 8px;
+    border: none;
+    padding: 20px;
+    background: var(--color-white);
+}
+
+.description-cards.alignedright.block .cardstyle {
+    flex: 0 0 23.5%;
+}
+
+.alignedcenter-bluebg .cardstyle .toprow {
+    font-weight: var(--font-weight-semibold);
+    font-size: 18px;
+    color: var(--color-text-primary);
+}
+
+.description-cards .cardstyle p {
+    font-weight: 400;
+    margin-bottom: 0;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+}
+
+.alignedcenter-bluebg .cardstyle div:last-child p {
+    font-size: var(--fs-md);
+    text-align: center;
+    font-weight: 600;
+    color: var(--text-seaction-heading);
+    margin-top: 10px;
+}
+
+.description-cards.alignedleft.block .cardstyle {
+    flex: 0 0 32%;
+}
+
+.description-cards.alignedleft.block {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.description-cards.alignedleft.block .cardstyle p {
+    margin-top: 5px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    color: var(--color-text-secondary);
+    font-size: 16px;
+}
+
+.description-cards.alignedright .toprow,
+.description-cards.growmoneyalignedright .toprow {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.description-cards.alignedleft.block .cardstyle .toprow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-primary);
+    min-height: 52px;
+}
+
+.description-cards.alignedright {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+}
+
+.description-cards.growmoneyalignedright {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 40px 0 0;
+    gap: 30px;
+}
+
+.description-cards.growmoneyalignedright.block .cardstyle {
+    flex: 0 0 48%;
+}
+
+.description-cards.alignedright .toprow > div,
+.description-cards.growmoneyalignedright .toprow > div,
+.description-cards.growmoneyalignedright .toprow .deschead {
+    font-weight: var(--font-weight-semibold);
+    font-size: 18px;
+    color: var(--color-text-primary);
+    flex: 0 0 calc(100% - 60px);
+    max-width: calc(100% - 60px);
+}
+
+.description-cards.alignedleft.block .cardstyle .toprow > div {
+    font-size: 18px;
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+.description-cards.alignedright-full-three.block,
+.description-cards.alignedright-full-four.block {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.description-cards.alignedright-full-three.block .cardstyle {
+    flex: 0 0 32.5%;
+    max-width: 32.5%;
+    margin-top: 15px;
+}
+
+.description-cards.alignedcenter-bluebg.block {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.description-cards.alignedcenter-bluebg.block .cardstyle {
+    flex: 0 0 32.5%;
+    max-width: 32.5%;
+    margin-top: 15px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: none;
+    box-shadow: var(--primary-boxshadow);
+}
+
+.description-cards.alignedright-full-four.block .cardstyle {
+    flex: 0 0 24.5%;
+    max-width: 24.5%;
+    margin-top: 15px;
+}
+
+.description-cards.alignedright-full-three.block .cardstyle .toprow,
+.description-cards.alignedright-full-four.block .cardstyle .toprow {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.description-cards.alignedcenter-bluebg.block .cardstyle .toprow {
+    display: block;
+    text-align: center;
+}
+
+.description-cards-wrapper .alignedcenter-bluebg.block .cardstyle h2 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 26px;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 0;
+}
+
+.description-cards-wrapper .alignedcenter-bluebg.block .cardstyle h2 strong,
+.banner-card-container #esg-profile {
+    font-size: var(--f-s-sub-title);
+    font-weight: var(--font-weight-medium);
+}
+
+.description-cards.alignedright-full-three.block .cardstyle .toprow > div,
+.description-cards.alignedright-full-four.block .cardstyle .toprow > div {
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--color-text-primary);
+    min-height: 52px;
+}
+
+.section.align-center.description-cards-container .default-content-wrapper h2 {
+    font-size: var(--f-s-sub-title);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 10px;
+}
+
+.section.align-center.description-cards-container .default-content-wrapper p {
+    color: var(--color-text-secondary);
+}
+
+.section.description-cards-container
+    .default-content-wrapper
+    #our-remarkable-achievements {
+    font-size: var(--f-s-sub-title);
+    text-align: center;
+}
+
+.description-cards.growmoneyalignedright.block {
+    margin-bottom: 30px;
+}
+
+.cardstyle h3.deschead {
+    font-family: var(--font-primary);
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 0;
+}
+
+@media (width <=768px) {
+    .description-cards {
+        flex-wrap: wrap;
+    }
+
+    .description-cards .cardstyle {
+        border-radius: 4px;
+        border: 1px solid rgb(0 0 0 / 10%);
+        background: var(--color-white);
+        box-shadow: var(--primary-boxshadow);
+        position: relative;
+    }
+
+    .description-cards.alignedleft.block .cardstyle,
+    .description-cards.alignedright.block .cardstyle,
+    .description-cards.alignedcenter-bluebg.block .cardstyle {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .description-cards.alignedright .toprow > div,
+    .description-cards.growmoneyalignedright .toprow > div,
+    .description-cards.alignedleft.block .cardstyle .toprow > div,
+    .description-cards.growmoneyalignedright .toprow .deschead {
+        font-size: 16px;
+    }
+
+    .description-cards.alignedright .toprow,
+    .description-cards.growmoneyalignedright .toprow {
+        min-height: auto;
+        margin-bottom: 5px;
+    }
+
+    .description-cards.alignedleft.block .cardstyle img,
+    .description-cards.alignedright.block .cardstyle img {
+        width: 30px;
+    }
+
+    .description-cards.alignedleft.block .cardstyle .toprow img {
+        width: 25px;
+    }
+
+    .description-cards.growmoneyalignedright.block .cardstyle {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-top: 0;
+    }
+
+    .description-cards.alignedright-full-three.block .cardstyle {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-top: 15px;
+    }
+
+    .description-cards.alignedright-full-four.block .cardstyle {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-top: 15px;
+    }
+
+    .description-cards .cardstyle p {
+        font-size: 14px;
+    }
+
+    .description-cards.alignedleft.block,
+    .description-cards.alignedright {
+        margin-top: 0;
+    }
+
+    .description-cards.alignedright-full-three.block .cardstyle .toprow > div,
+    .description-cards.alignedright-full-four.block .cardstyle .toprow > div {
+        min-height: auto;
+    }
+
+    .mose-page .description-cards {
+        margin: 0;
+    }
+
+    .research-page
+        .description-cards-wrapper:last-child
+        .description-cards
+        .cardstyle:first-child {
+        margin: 0;
+    }
+}
+
+.card-link {
+    display: block;
+    height: 100%;
+}

@@ -1,0 +1,29 @@
+body {
+  box-sizing: border-box;
+}
+
+@keyframes blink-color {
+  0% {
+    color: #fff;
+    background-color: #f00;
+  }
+
+  50% {
+    color: #fff;
+    background-color: #2e2a94;
+  }
+
+  100% {
+    color: #fff;
+    background-color: #f00;
+  }
+}
+
+.budget-link {
+  animation: blink-color 1.5s infinite;
+  cursor: pointer;
+  background-color: #2b2e8c;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+}

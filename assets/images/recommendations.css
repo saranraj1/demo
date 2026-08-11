@@ -1,0 +1,196 @@
+.recommendations-list {
+    color: var(--color-gray-3);
+    display: grid;
+    font-weight: normal;
+    grid-template-columns: repeat(auto-fill, minmax(281px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+}
+
+.recommendation-item {
+    padding: 20px 0;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: var(--primary-boxshadow);
+    gap: 5px;
+}
+
+.recommendation-header {
+    padding: 0 20px;
+}
+
+.recommendation-header,
+.recommendation-price {
+    width: 100%;
+}
+
+.recommendation-name {
+    color: var(--color-text-primary);
+    font-size: 18px;
+    font-weight: var(--font-weight-semibold);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 123px;
+}
+
+.recommendation-calltype {
+    background-color: var(--color-light-gray-2);
+    font-size: 12px;
+    border-radius: 4px;
+    line-height: 1;
+    padding: 4px 8px;
+    width: fit-content;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+}
+
+.recommendation-action span {
+    border: 1px solid var(--color-error);
+    background-color: var(--color-error-light);
+    color: var(--color-error);
+    border-radius: 4px;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: var(--font-weight-semibold);
+    padding: 4px 8px;
+}
+
+.recommendation-img-wrap span {
+    align-items: center;
+    border: 1px solid var(--color-gray-15);
+    background-color: var(--color-white);
+    border-radius: 8px;
+    padding: 5px;
+    width: 42px;
+    height: 42px;
+}
+
+.recommendation-action.buy span {
+    background-color: var(--color-success-lighter);
+    border: 1px solid #008745;
+    color: #008745; /* WCAG 1.4.3: was var(--color-success) #19c381 (1.9:1) — now 4.61:1 on #ebffe6 */
+}
+
+.recommendation-return-val {
+    color: #d22b24; /* WCAG 1.4.3: was var(--color-error) #de3730 (4.0:1) — now 4.55:1 on white */
+    font-size: 20px;
+    font-weight: var(--font-weight-semibold);
+    line-height: normal;
+}
+
+.recommendation-return-val.buy {
+    color: #008745; /* WCAG 1.4.3: was var(--color-dark-green) #009b00 (3.7:1) — now 4.61:1 on white */
+}
+
+.recommendation-stock-wrap {
+    gap: 8px;
+    width: 100%;
+}
+
+.recommendation-stock {
+    width: 100%;
+    gap: 4px;
+}
+
+.recommendation-stock div:first-child {
+    gap: 10px;
+}
+
+.recommendation-body .locked-card {
+    border-radius: 0 0 8px 8px;
+    background: rgb(255 255 255 / 1%);
+    backdrop-filter: blur(4px);
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-backdrop-filter: blur(4px);
+    height: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    display: none;
+}
+
+.recommendation-item.locked .locked-card {
+    display: flex;
+    justify-content: center;
+}
+
+.recommendation-item.locked .recommendation-body .locked-card img {
+    align-self: center;
+}
+
+.recommendation-body {
+    gap: 4px;
+    padding: 12px 20px 0;
+    position: relative;
+}
+
+.recommendation-price-col {
+    gap: 4px;
+}
+
+.recommendation-price-lbl {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 18px;
+}
+
+.recommendation-price-val {
+    color: var(--color-text-primary);
+    font-size: 16px;
+    font-weight: var(--font-weight-semibold);
+    line-height: normal;
+}
+
+.recommendation-price
+    .recommendation-price-col:last-child
+    .recommendation-price-val {
+    text-align: right;
+}
+
+.recommendations-container h3,
+.positional-buildup-contracts-container h3,
+.positional-buildup-contracts-container h2,
+.recommendations-container h2 {
+    text-align: center;
+    font-size: var(--f-s-sub-title);
+    font-weight: var(--font-weight-medium);
+}
+
+@media (width >= 600px) {
+    .recommendations-list {
+        gap: 20px;
+        margin: 48px 0;
+    }
+
+    .recommendation-price-val {
+        font-size: 18px;
+    }
+
+    .recommendation-return-val {
+        font-size: 24px;
+    }
+
+    .recommendation-body {
+        gap: 8px;
+    }
+}
+
+@media (width <=768px) {
+    .recommendation-header,
+    .recommendation-body {
+        padding: 0 15px;
+    }
+
+    .recommendation-price-col {
+        gap: 0;
+    }
+
+    .recommendations-container h2 {
+        font-size: 22px;
+    }
+    
+
+    
+}

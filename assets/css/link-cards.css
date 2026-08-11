@@ -1,0 +1,90 @@
+.link-cards-container .link-cards.block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.link-cards-container .link-cards.block .link-card-item {
+    box-shadow: var(--primary-boxshadow);
+    border-radius: 12px;
+    border: none;
+    text-align: center;
+    padding: 15px 15px 5px;
+    margin-bottom: 25px;
+    flex: 0 0 23.5%;
+    max-width: 23.5%;
+    background: var(--color-white);
+}
+
+.link-cards-container .link-cards.white-bg {
+    gap: 15px;
+}
+
+.link-cards-container .link-cards.white-bg .link-card-item {
+    text-align: left;
+    background: unset;
+    flex: 0 0 32%;
+    max-width: 32%;
+}
+
+.link-cards-container .link-cards.block p {
+    font-weight: 600;
+    margin: 0;
+    min-height: 50px;
+    color: var(--color-text-primary);
+}
+
+.link-cards-container .link-cards.block .arrowimg {
+    height: 25px;
+    width: 24px;
+    margin-left: auto;
+    padding-right: 20px;
+    padding-bottom: 30px;
+    background-image: url("../icons/arrow-right-faq.svg");
+}
+
+.section .link-cards-wrapper {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+#investor-charter {
+    font-size: var(--f-s-page-title);
+    font-family: var(--font-secondary);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-seaction-heading);
+}
+
+.link-cards-container .default-content-wrapper h2 {
+    font-size: var(--f-s-sub-title);
+    font-weight: var(--font-weight-medium);
+}
+
+.investor-relations .section .link-cards-wrapper {
+    margin-top: 24px;
+}
+
+@media (width <= 768px) {
+    .link-cards-container .link-cards.block > .link-card-item {
+        flex: 0 0 48%;
+        max-width: 48%;
+    }
+
+    .link-cards-container .link-cards.white-bg .link-card-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .section .link-cards-wrapper {
+        margin-top: 30px;
+        margin-bottom: 0;
+    }
+
+    .link-cards-container .link-cards.block > .link-card-item img {
+        width: 40px;
+    }
+
+    .link-cards-container .link-cards.block p {
+        font-size: 14px;
+    }
+}

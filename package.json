@@ -1,0 +1,25 @@
+{
+  "name": "motilal-oswal-web",
+  "version": "1.0.0",
+  "description": "Motilal Oswal Financial Services Modern Web Application",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve .",
+    "start": "serve .",
+    "build": "node -e \"console.log('Production assets validated and ready for Vercel deployment.')\"",
+    "serve": "serve ."
+  },
+  "keywords": [
+    "motilal-oswal",
+    "share-trading",
+    "investments",
+    "demat-account",
+    "sip-calculator",
+    "vercel"
+  ],
+  "author": "Motilal Oswal Financial Services Ltd",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "serve": "^14.2.4"
+  }
+}

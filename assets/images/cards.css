@@ -1,0 +1,210 @@
+.cards {
+    margin: 24px 0;
+}
+
+.cards > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.partner-tick-card ul {
+    gap: 16px;
+}
+
+.cards.invest-in-icon > ul {
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.cards > ul li {
+    flex: 0 0 24%;
+    max-width: 24%;
+}
+
+.cards.iconcenter li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.cards.invest-in-icon > ul li {
+    flex: 0 0 calc(50% - 15px);
+    max-width: calc(50% - 15px);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cards.partner-tick-card > ul li {
+    align-items: self-start;
+}
+
+.cards.threecolumncards.block li {
+    flex: 0 0 32%;
+    max-width: 32%;
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.mose-page .cards.invest-in-icon > ul li{
+    gap: 10px;
+}
+
+.cards-card-body > p {
+    margin-bottom: 0;
+    font-size: 14px;
+}
+
+.invest-in-icon .cards-card-body > p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin: 0;
+    color: var(--color-text-secondary);
+}
+
+.blog-page .cards.invest-in-icon > ul li {
+    align-items: center;
+}
+
+.cards.invest-in-icon > ul li .cards-card-image {
+    flex-shrink: 0;
+}
+
+.cards.iconcenter .cards-card-body {
+    max-width: 194px;
+    margin-top: 10px;
+}
+
+.cards.iconcenter img {
+    width: auto;
+    margin: auto;
+}
+
+.cards.iconcenter {
+    text-align: center;
+}
+
+.cards.partner-tick-card ul li .cards-card-image {
+    margin-top: 1px;
+    margin-right: 10px;
+}
+
+.partner-tick-card .cards-card-body > p {
+    line-height: 24px;
+}
+
+.cards.iconcenter .cards-card-body p {
+    font-weight: var(--font-weight-medium);
+    font-size: 16px;
+}
+
+.cards.threecolumncards.block li .cards-card-image {
+    flex: 0 0 50px;
+    max-width: 50px;
+}
+
+.cards.threecolumncards.block li .cards-card-image img {
+    width: 100%;
+}
+
+.cards.threecolumncards.block li p {
+    margin: 0;
+}
+
+.cards.threecolumncards.block li p:first-child {
+    font-size: 16px;
+    color: var(--color-text-primary);
+}
+
+.cards.threecolumncards.block li p:last-child {
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+.cards.iconcenter.block {
+    margin-top: 40px;
+}
+
+.section.align-center.cards-container .default-content-wrapper h2 {
+    font-size: var(--f-s-sub-title);
+    font-weight: var(--font-weight-medium);
+}
+
+h2#attend-weekly-webinars-on {
+    text-align: center;
+}
+
+.huf-page .cards.invest-in-icon > ul li {
+    gap: 8px;
+}
+
+@media (width <= 768px) {
+    .cards > ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 24px;
+    }
+
+    .cards > ul > li {
+        max-width: 257px;
+    }
+
+    .cards.invest-in-icon > ul li {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .cards.invest-in-icon > ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .cards.iconcenter .cards-card-body {
+        max-width: 100%;
+    }
+
+    .cards-card-body > p {
+        font-size: 14px;
+        line-height: normal;
+    }
+
+    .cards-card-image {
+        width: 50px;
+    }
+
+    .edumo-page .cards-card-image {
+        width: 22px;
+    }
+
+    .blog-page main .cards-card-image {
+        width: auto;
+    }
+
+    .cards.threecolumncards.block ul {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .cards.threecolumncards.block li {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .cards.threecolumncards.block li .cards-card-image img {
+        width: auto;
+    }
+
+    .cards.invest-in-icon.block {
+        margin: 15px 0;
+    }
+}

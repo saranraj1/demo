@@ -1,0 +1,34 @@
+/* stylelint-disable selector-class-pattern */
+
+/* add global styles that can be loaded post LCP here */
+
+/* The button's loading state */
+.btn-loader__active {
+    position: relative;
+    text-align: center;
+    padding-left: 30px; /* Allow space for the loader */
+}
+
+.open-demat-form button.btn-loader__active::after {
+    content: none;
+}
+
+/* The spinner SVG inside the button */
+.btn-loader__spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 1s linear infinite;
+}
+
+/* The spinning animation for the SVG */
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

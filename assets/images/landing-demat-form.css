@@ -1,0 +1,188 @@
+.landing-demat-form-wrapper{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.landing-demat-form .home-page-form{
+    background: #fff;
+    border: 1px solid #EBECF0;
+    border-radius: 12px;
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    box-shadow: var(--primary-boxshadow);
+    padding: 8px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.landing-demat-form .home-page-form .form-tnc{
+    color: var(--text-color);
+    font-family: var(--font-primary);
+}
+
+.landing-demat-form .home-page-form  input#terms-checkbox {
+    height: 16px;
+    width: 20px;
+    margin: 0;
+}
+
+.landing-demat-form .home-page-form  .error-message {
+    color: #e03131;
+    font-size: 12px;
+    display: none;
+}
+
+#terms-checkbox {
+    accent-color: #2b2e8c;
+}
+
+.landing-demat-form .home-page-form .submit-btn{
+    position: relative;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 100%;
+    max-height: 43px;
+    min-height: 43px;
+}
+
+.landing-demat-form .home-page-form .name-wrapper, 
+.landing-demat-form .home-page-form .mobile-wrapper{
+    position: relative;
+    width: 100%;
+}
+
+/* .landing-demat-form .home-page-form .name-wrapper::before{
+    content: url("../../icons/dmformpr.png");
+    position: absolute;
+    left: 10px;
+    top:24px;
+    transform: translateY(-50%);
+    height: auto;
+} */
+
+.landing-demat-form .home-page-form .name-wrapper::before{
+    background-image: url('../../icons/profile-form-icon.svg');
+    background-size: 17px 17px;
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    content: "";
+    position: absolute;
+    top: 21px;
+    left: 10px;
+    transform: translateY(-50%);
+}
+    
+.landing-demat-form .home-page-form .mobile-wrapper::before{
+    content: "+91";
+    position: absolute;
+    left: 10px;
+    top:22px;
+    transform: translateY(-50%); 
+    font-size: 14px;
+}
+
+.landing-demat-form .home-page-form input#contactmob{
+    padding-left: 40px;
+}
+
+.landing-demat-form input,.landing-demat-form input:hover,
+.landing-demat-form input:focus,.landing-demat-form input:active{
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    background: var(--page-bg-color);
+    border: 1px solid var(--color-neutral-200);
+    outline: none;
+    padding-left: 32px;
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.landing-demat-form input:hover,
+.landing-demat-form input:focus,
+.landing-demat-form input:active{
+    border: solid 1px var(--color-neutral-200);
+}
+
+.btn-loader-spin{
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.demat-form-wrapper{
+    display: none;
+}
+
+@media (width <= 1024px) {
+    .demat-form-wrapper{
+    display: block;
+ }
+}
+
+
+@media (width >= 1024px) {
+    .landing-demat-form .home-page-form{
+    width: 62%;
+}
+}
+
+@media (width <= 768px) {
+    .landing-demat-form .home-page-form {
+        display: block;
+        padding: 60px 20px 20px;
+    }
+    
+    .landing-demat-form input, .landing-demat-form input:hover, .landing-demat-form input:focus, .landing-demat-form input:active {
+        width: 100%;     
+    }
+
+    .landing-demat-form .landing-demat-form-wrapper {
+        margin-top: 30px;
+        position: relative;        
+    }
+
+    .landing-demat-form .home-page-form .form-tnc {
+        display: block;
+        margin-bottom: 15px;
+    }
+
+    .landing-demat-form .landing-demat-form-wrapper::before {
+        position: absolute;
+        content: "Open Free Demat Account";
+        font-size: 22px;
+        text-align: center;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 300px;
+        font-family: var(--font-secondary);
+        font-weight: var(--font-weight-medium);
+    }
+
+    .landing-demat-form .home-page-form .submit-btn {      
+        width: 100%;
+    }
+
+    .landing-demat-form .home-page-form .name-wrapper, 
+    .landing-demat-form .home-page-form .mobile-wrapper {
+        margin-bottom: 15px;
+    }
+}
+
+
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

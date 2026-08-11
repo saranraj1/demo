@@ -1,0 +1,37 @@
+.icons-link {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.icons-link img {
+  max-width: 100%;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+
+.icons-link.grid-col-2 {
+  display: grid;
+  grid-template-columns: 94px 147px;
+  height: 94px;
+  gap: 8px 16px;
+}
+
+.icons-link.grid-col-2 .icons-link-item:first-child {
+  grid-row: span 2;
+}
+
+.icons-link.grid-col-2 .icons-link-item:last-child {
+  grid-column: 2;
+}
+
+.icons-link.grid-col-2 .icons-link-item>div {
+  display: flex;
+}
+
+.icons-link.grid-col-2 .icons-link-content {
+  display: flex;
+  width: 100%;
+}

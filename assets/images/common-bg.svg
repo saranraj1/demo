@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900" fill="none">
+<rect width="1440" height="900" fill="#FFFFFF"/>
+<path d="M0 0H1440V600C1050 650 750 520 0 600V0Z" fill="url(#subtle_grad)"/>
+<defs>
+<linearGradient id="subtle_grad" x1="720" y1="0" x2="720" y2="600" gradientUnits="userSpaceOnUse">
+<stop stop-color="#EEF5FF" stop-opacity="0.75"/>
+<stop offset="0.5" stop-color="#F6FAFF" stop-opacity="0.4"/>
+<stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>

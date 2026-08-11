@@ -1,0 +1,773 @@
+/* ==========================================================================
+   Motilal Oswal Web Application - Pixel-Perfect UI & Interactivity Styles
+   ========================================================================== */
+
+/* 1. Global Typography & Clean Base */
+:root {
+  --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-secondary: 'Playfair Display', 'Butler', 'Georgia', serif;
+  --color-primary: #2b2e8c;
+  --color-primary-dark: #1a1c5d;
+  --color-navy: #1e2268;
+  --color-text-main: #182a4e;
+  --color-text-muted: #55627a;
+  --bg-gradient-hero: linear-gradient(180deg, #edf4ff 0%, #f6f9ff 400px, #ffffff 600px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #ffffff var(--bg-gradient-hero) no-repeat top center;
+  background-size: 100% 700px;
+  color: var(--color-text-main);
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.5;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow-x: hidden;
+}
+
+/* Hide Accessibility Skip-to-main off-screen until focused */
+.skip-to-main, a.skip-to-main, .skip-link {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+}
+
+.skip-to-main:focus, a.skip-to-main:focus, .skip-link:focus {
+  position: fixed !important;
+  top: 10px !important;
+  left: 10px !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 10px 20px !important;
+  background: #2b2e8c !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  border-radius: 6px !important;
+  z-index: 999999 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  clip: auto !important;
+}
+
+/* 2. Top Header & Navigation Bar */
+.header-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #ffffff;
+  transition: box-shadow 0.25s ease;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+}
+
+.header-wrapper.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.header .header, footer .footer {
+  visibility: visible !important;
+}
+
+/* 3. Hero Section Typography */
+.home-heading-text h1,
+main h1,
+.hero-bg h1 {
+  font-family: var(--font-secondary) !important;
+  font-size: 52px !important;
+  font-weight: 600 !important;
+  line-height: 1.15 !important;
+  color: var(--color-navy) !important;
+  margin-top: 15px !important;
+  margin-bottom: 24px !important;
+  letter-spacing: -0.5px !important;
+}
+
+.home-heading-text h1 strong {
+  font-weight: 600 !important;
+  color: var(--color-navy) !important;
+}
+
+/* 4. Hero 5 Value Proposition Badges */
+.block.icon-card {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 20px !important;
+  padding: 10px 0 28px !important;
+  max-width: 1200px !important;
+}
+
+.icon-card-item {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex: 1 1 auto !important;
+}
+
+.icon-wrapper {
+  width: 38px !important;
+  height: 38px !important;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.icon-wrapper img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+.text-content {
+  display: flex !important;
+  flex-direction: column !important;
+  text-align: left !important;
+}
+
+.icon-card-title {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  color: var(--color-navy) !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.icon-card-description {
+  font-size: 13px !important;
+  color: var(--color-text-muted) !important;
+  margin: 2px 0 0 0 !important;
+  line-height: 1.3 !important;
+  font-weight: 400 !important;
+}
+
+/* 5. Hero Demat Lead Form */
+.landing-demat-form-wrapper {
+  margin-top: 10px;
+  margin-bottom: 35px;
+  max-width: 760px;
+}
+
+.landing-demat-form .home-page-form {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(43, 46, 140, 0.08) !important;
+  padding: 8px 12px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: auto !important;
+}
+
+.landing-demat-form .home-page-form .name-wrapper {
+  position: relative !important;
+  width: 220px !important;
+  margin-bottom: 0 !important;
+}
+
+.landing-demat-form .home-page-form .mobile-wrapper {
+  position: relative !important;
+  width: 220px !important;
+  margin-bottom: 0 !important;
+}
+
+.landing-demat-form .home-page-form input {
+  height: 44px !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 6px !important;
+  padding: 8px 12px 8px 36px !important;
+  font-size: 14px !important;
+  outline: none !important;
+  width: 100% !important;
+  font-family: var(--font-primary) !important;
+  background: #ffffff !important;
+  color: #1e293b !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.landing-demat-form .home-page-form input:focus {
+  border-color: #2b2e8c !important;
+  box-shadow: 0 0 0 3px rgba(43, 46, 140, 0.1) !important;
+}
+
+.landing-demat-form .home-page-form .mobile-wrapper input {
+  padding-left: 44px !important;
+}
+
+.landing-demat-form .home-page-form .form-tnc {
+  font-size: 13px !important;
+  color: #64748b !important;
+  white-space: nowrap !important;
+  margin: 0 !important;
+  font-weight: 500 !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+}
+
+.landing-demat-form .home-page-form .submit-btn {
+  background: #2b2e8c !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  padding: 12px 24px !important;
+  height: 44px !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  width: auto !important;
+  transition: background 0.2s ease, transform 0.15s ease !important;
+}
+
+.landing-demat-form .home-page-form .submit-btn:hover {
+  background: #1a1c5d !important;
+  transform: translateY(-1px) !important;
+}
+
+.landing-demat-form .home-page-form .submit-btn:active {
+  transform: translateY(1px) !important;
+}
+
+/* 6. Section Titles */
+h2, main h2, .section h2 {
+  font-family: var(--font-secondary) !important;
+  font-size: 34px !important;
+  font-weight: 600 !important;
+  color: var(--color-navy) !important;
+  text-align: center !important;
+  margin-top: 40px !important;
+  margin-bottom: 24px !important;
+  letter-spacing: -0.3px !important;
+}
+
+/* 7. Investment Opportunities Cards & Market Leaders Cards */
+.link-cards > div {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+}
+
+@media (max-width: 1024px) {
+  .link-cards > div {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .link-cards > div {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.link-cards > div > div {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  padding: 24px 20px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.25s ease !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-height: 140px !important;
+}
+
+.link-cards > div > div:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 10px 24px rgba(43, 46, 140, 0.1) !important;
+  border-color: #2b2e8c !important;
+}
+
+/* 8. "Get Started Now" CTA Buttons in Sections */
+.button-arrow .button-container a,
+.button-arrow .button-container button,
+.button-arrow a.button {
+  background: #2b2e8c !important;
+  color: #ffffff !important;
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  padding: 12px 28px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.button-arrow .button-container a:hover,
+.button-arrow .button-container button:hover {
+  background: #1a1c5d !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 9. Interactive SIP & Wealth Financial Calculator */
+.sip-calculator-section {
+  padding: 50px 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  margin: 40px auto;
+  max-width: 1200px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(43, 46, 140, 0.05);
+}
+
+.sip-calculator-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .sip-calculator-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sip-calc-header h2 {
+  text-align: left !important;
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+.sip-calc-header p {
+  color: var(--color-text-muted);
+  margin-bottom: 24px;
+}
+
+.sip-control-group {
+  margin-bottom: 22px;
+}
+
+.sip-control-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--color-navy);
+  font-size: 14px;
+}
+
+.sip-val-badge {
+  background: #2b2e8c;
+  color: #ffffff;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.sip-range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  outline: none;
+}
+
+.sip-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #2b2e8c;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease;
+}
+
+.sip-range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.sip-results-card {
+  background: #f8faff;
+  border-radius: 12px;
+  padding: 28px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sip-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #cbd5e1;
+}
+
+.sip-result-row.total {
+  border-bottom: none;
+  padding-top: 6px;
+}
+
+.sip-result-label {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.sip-result-val {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.sip-result-row.total .sip-result-val {
+  font-size: 24px;
+  color: #2b2e8c;
+}
+
+.sip-visual-bar {
+  display: flex;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 6px 0;
+  background: #e2e8f0;
+}
+
+.sip-bar-invested {
+  background: #2b2e8c;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.sip-bar-returns {
+  background: #10b981;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.sip-legend {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.sip-legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.sip-legend-dot.invested { background: #2b2e8c; }
+.sip-legend-dot.returns { background: #10b981; }
+
+.sip-start-btn {
+  background: #2b2e8c;
+  color: #ffffff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.2s ease;
+}
+
+.sip-start-btn:hover {
+  background: #1a1c5d;
+}
+
+/* 10. Carousel Navigation Buttons */
+.carousel-nav-btn {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.carousel-nav-btn:hover {
+  background: #2b2e8c;
+  color: #ffffff;
+}
+
+.carousel-nav-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.carousel-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: #2b2e8c;
+}
+
+/* 11. Modal Overlays */
+.mo-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(10, 31, 80, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mo-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mo-modal-card {
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 460px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  position: relative;
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.3s ease;
+}
+
+.mo-modal-backdrop.open .mo-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.mo-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: #f1f5f9;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+}
+
+.mo-modal-close:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.mo-modal-title {
+  font-size: 20px;
+  color: #2b2e8c;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.mo-modal-subtitle {
+  color: #64748b;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.otp-digit-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 18px 0;
+}
+
+.otp-digit-input {
+  width: 44px;
+  height: 48px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  outline: none;
+}
+
+.otp-digit-input:focus {
+  border-color: #2b2e8c;
+}
+
+/* 12. Floating Demat Bar */
+.floating-demat-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  transition: transform 0.3s ease;
+}
+
+.floating-demat-bar.hidden {
+  transform: translateY(100%);
+}
+
+.floating-demat-bar form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  max-width: 700px;
+  width: 100%;
+}
+
+.floating-demat-bar input {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  outline: none;
+}
+
+.floating-demat-bar button {
+  background: #2b2e8c;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.floating-demat-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 16px;
+  padding: 4px;
+}
+
+/* 13. Toast Container */
+.mo-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 4000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.mo-toast {
+  background: #ffffff;
+  color: #1e293b;
+  border-left: 4px solid #2b2e8c;
+  padding: 12px 18px;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  pointer-events: auto;
+  animation: slideInToast 0.3s ease forwards;
+}
+
+.mo-toast.success { border-left-color: #10b981; }
+.mo-toast.error { border-left-color: #ef4444; }
+
+@keyframes slideInToast {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* 14. Responsive Rules */
+@media (max-width: 768px) {
+  .home-heading-text h1, main h1, .hero-bg h1 {
+    font-size: 32px !important;
+  }
+  
+  .block.icon-card {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  .landing-demat-form .home-page-form {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 16px !important;
+  }
+
+  .landing-demat-form .home-page-form .name-wrapper,
+  .landing-demat-form .home-page-form .mobile-wrapper {
+    width: 100% !important;
+  }
+
+  .landing-demat-form .home-page-form .submit-btn {
+    width: 100% !important;
+  }
+}
