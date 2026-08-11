@@ -529,6 +529,27 @@ function initAccordions() {
       }
     });
   });
+
+  // FAQ Accordions
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      if (!item) return;
+      const isActive = item.classList.contains('active');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+
+      if (isActive) {
+        item.classList.remove('active');
+        if (answer) answer.style.display = 'none';
+        if (icon) icon.textContent = '+';
+      } else {
+        item.classList.add('active');
+        if (answer) answer.style.display = 'block';
+        if (icon) icon.textContent = '−';
+      }
+    });
+  });
 }
 
 /* ==========================================================================
