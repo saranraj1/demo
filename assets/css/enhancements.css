@@ -83,7 +83,7 @@ body {
   visibility: visible !important;
 }
 
-/* 4. Hero Section Typography */
+/* 3. Hero Section Typography */
 .home-heading-text h1,
 main h1,
 .hero-bg h1 {
@@ -102,7 +102,7 @@ main h1,
   color: var(--color-navy) !important;
 }
 
-/* 5. Hero 5 Value Proposition Badges */
+/* 4. Hero 5 Value Proposition Badges */
 .block.icon-card {
   display: flex !important;
   flex-direction: row !important;
@@ -159,7 +159,7 @@ main h1,
   font-weight: 400 !important;
 }
 
-/* 6. Hero Demat Lead Form */
+/* 5. Hero Demat Lead Form */
 .landing-demat-form-wrapper {
   margin-top: 10px;
   margin-bottom: 35px;
@@ -179,7 +179,7 @@ main h1,
   width: auto !important;
 }
 
-/* 7. Section Titles */
+/* 6. Section Titles */
 h2, main h2, .section h2 {
   font-family: var(--font-secondary) !important;
   font-size: 34px !important;
@@ -191,15 +191,85 @@ h2, main h2, .section h2 {
   letter-spacing: -0.3px !important;
 }
 
-.section-subtitle {
-  text-align: center;
-  color: var(--color-text-muted);
-  max-width: 750px;
-  margin: -12px auto 36px;
-  font-size: 15px;
+/* 7. Centered Auto-Advancing Highlights Carousel */
+.highlights-section {
+  padding: 30px 16px 50px;
+  background: #ffffff;
 }
 
-/* 12. Investment Opportunities Cards & Market Leaders Cards */
+.highlights-carousel-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.highlights-slides-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  width: 100%;
+}
+
+.highlights-slide {
+  min-width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.highlights-slide a {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.highlights-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.highlights-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.hl-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.hl-dot.active {
+  width: 26px;
+  border-radius: 4px;
+  background: #2b2e8c;
+}
+
+/* Hide all unstyled white semicircle/oval buttons and pause button */
+.carousel-navigation-buttons,
+.carousel-navigation-buttons button,
+.carousel-slide-indicators,
+button[aria-label="Pause Carousel"],
+.carousel-wrapper .sr-only {
+  display: none !important;
+}
+
+/* 8. Investment Opportunities Cards & Market Leaders Cards */
 .link-cards > div {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
@@ -239,7 +309,7 @@ h2, main h2, .section h2 {
   border-color: #2b2e8c !important;
 }
 
-/* 13. CTA Buttons in Sections */
+/* 9. CTA Buttons in Sections */
 .button-arrow .button-container a,
 .button-arrow .button-container button,
 .button-arrow a.button {
@@ -265,234 +335,7 @@ h2, main h2, .section h2 {
   transform: translateY(-1px) !important;
 }
 
-/* 14. Interactive SIP Calculator */
-.sip-calculator-section {
-  padding: 50px 20px;
-  background: #ffffff;
-  border-radius: 16px;
-  margin: 40px auto;
-  max-width: 1200px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 20px rgba(43, 46, 140, 0.05);
-}
-
-.sip-calculator-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-@media (max-width: 900px) {
-  .sip-calculator-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-.sip-calc-header h2 {
-  text-align: left !important;
-  margin-top: 0 !important;
-  margin-bottom: 8px !important;
-}
-
-.sip-calc-header p {
-  color: var(--color-text-muted);
-  margin-bottom: 24px;
-}
-
-.sip-control-group {
-  margin-bottom: 22px;
-}
-
-.sip-control-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: var(--color-navy);
-  font-size: 14px;
-}
-
-.sip-val-badge {
-  background: #2b2e8c;
-  color: #ffffff;
-  padding: 3px 12px;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 13px;
-}
-
-.sip-range-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 6px;
-  background: #e2e8f0;
-  border-radius: 4px;
-  outline: none;
-}
-
-.sip-range-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: #2b2e8c;
-  border: 3px solid #ffffff;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.15s ease;
-}
-
-.sip-range-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.15);
-}
-
-.sip-results-card {
-  background: #f8faff;
-  border-radius: 12px;
-  padding: 28px;
-  border: 1px solid #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.sip-result-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 10px;
-  border-bottom: 1px dashed #cbd5e1;
-}
-
-.sip-result-row.total {
-  border-bottom: none;
-  padding-top: 6px;
-}
-
-.sip-result-label {
-  color: var(--color-text-muted);
-  font-size: 14px;
-}
-
-.sip-result-val {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--color-navy);
-}
-
-.sip-result-row.total .sip-result-val {
-  font-size: 24px;
-  color: #2b2e8c;
-}
-
-.sip-visual-bar {
-  display: flex;
-  height: 10px;
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 6px 0;
-  background: #e2e8f0;
-}
-
-.sip-bar-invested {
-  background: #2b2e8c;
-  height: 100%;
-  transition: width 0.3s ease;
-}
-
-.sip-bar-returns {
-  background: #10b981;
-  height: 100%;
-  transition: width 0.3s ease;
-}
-
-.sip-legend {
-  display: flex;
-  gap: 20px;
-  font-size: 12px;
-  color: var(--color-text-muted);
-}
-
-.sip-legend-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-right: 6px;
-}
-
-.sip-legend-dot.invested { background: #2b2e8c; }
-.sip-legend-dot.returns { background: #10b981; }
-
-.sip-start-btn {
-  background: #2b2e8c;
-  color: #ffffff;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 6px;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  text-align: center;
-  transition: background 0.2s ease;
-}
-
-.sip-start-btn:hover {
-  background: #1a1c5d;
-}
-
-/* 15. Carousel Controls */
-.carousel-nav-btn {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s ease;
-}
-
-.carousel-nav-btn:hover {
-  background: #2b2e8c;
-  color: #ffffff;
-}
-
-.carousel-nav-btn svg {
-  width: 18px;
-  height: 18px;
-}
-
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #cbd5e1;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.carousel-dot.active {
-  width: 24px;
-  border-radius: 4px;
-  background: #2b2e8c;
-}
-
-/* 16. Modals */
+/* 10. Modals */
 .mo-modal-backdrop {
   position: fixed;
   top: 0;
@@ -588,7 +431,7 @@ h2, main h2, .section h2 {
   border-color: #2b2e8c;
 }
 
-/* 17. Floating Demat Bar */
+/* 11. Floating Demat Bar */
 .floating-demat-bar {
   position: fixed;
   bottom: 0;
@@ -646,7 +489,7 @@ h2, main h2, .section h2 {
   padding: 4px;
 }
 
-/* 18. Toast Container */
+/* 12. Toast Container */
 .mo-toast-container {
   position: fixed;
   bottom: 24px;
@@ -682,7 +525,7 @@ h2, main h2, .section h2 {
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* 19. Responsive Rules */
+/* 13. Responsive Rules */
 @media (max-width: 768px) {
   .home-heading-text h1, main h1, .hero-bg h1 {
     font-size: 32px !important;

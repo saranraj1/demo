@@ -291,105 +291,80 @@ function initSipCalculator() {
    6. Highlights Carousel Slider
    ========================================================================== */
 function initCarousel() {
-  const carousel = document.querySelector('.carousel-slides-container');
-  if (!carousel) return;
+  const wrap = document.getElementById('highlightsCarousel') || document.querySelector('.highlights-carousel-wrap');
+  if (!wrap) return;
 
-  const slides = carousel.querySelectorAll('.carousel-slide');
-  const prevBtn = document.querySelector('.carousel-btn-prev');
-  const nextBtn = document.querySelector('.carousel-btn-next');
-  const dotsContainer = document.querySelector('.carousel-dots');
-  const pauseBtn = document.querySelector('.carousel-btn-pause');
+  const track = wrap.querySelector('.highlights-slides-track');
+  const slides = wrap.querySelectorAll('.highlights-slide');
+  const dots = wrap.querySelectorAll('.hl-dot');
 
-  if (!slides.length) return;
+  if (!slides.length || !track) return;
 
   let currentIndex = 0;
-  let isPlaying = true;
-  let timer = null;
+  let autoplayTimer = null;
 
-  // Build dots if container exists
-  if (dotsContainer) {
-    dotsContainer.innerHTML = '';
-    slides.forEach((_, idx) => {
-      const dot = document.createElement('span');
-      dot.className = `carousel-dot ${idx === 0 ? 'active' : ''}`;
-      dot.addEventListener('click', () => goToSlide(idx));
-      dotsContainer.appendChild(dot);
-    });
-  }
-
-  function updateSlides() {
-    slides.forEach((slide, idx) => {
-      slide.style.display = idx === currentIndex ? 'block' : 'none';
-      slide.setAttribute('aria-hidden', idx === currentIndex ? 'false' : 'true');
-    });
-
-    if (dotsContainer) {
-      const dots = dotsContainer.querySelectorAll('.carousel-dot');
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentIndex);
-      });
-    }
-  }
-
-  function goToSlide(index) {
+  function updateCarousel(index) {
     currentIndex = (index + slides.length) % slides.length;
-    updateSlides();
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+    slides.forEach((slide, idx) => {
+      slide.classList.toggle('active', idx === currentIndex);
+    });
+
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentIndex);
+    });
   }
 
   function nextSlide() {
-    goToSlide(currentIndex + 1);
+    updateCarousel(currentIndex + 1);
   }
 
   function prevSlide() {
-    goToSlide(currentIndex - 1);
+    updateCarousel(currentIndex - 1);
   }
 
-  function startAutoplay() {
-    stopAutoplay();
-    timer = setInterval(nextSlide, 4500);
-    isPlaying = true;
-    if (pauseBtn) pauseBtn.textContent = '⏸';
+  function startAuto() {
+    stopAuto();
+    autoplayTimer = setInterval(nextSlide, 3500);
   }
 
-  function stopAutoplay() {
-    if (timer) clearInterval(timer);
-    timer = null;
-    isPlaying = false;
-    if (pauseBtn) pauseBtn.textContent = '▶';
+  function stopAuto() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
   }
 
-  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoplay(); });
-  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoplay(); });
-
-  if (pauseBtn) {
-    pauseBtn.addEventListener('click', () => {
-      if (isPlaying) stopAutoplay();
-      else startAutoplay();
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      updateCarousel(idx);
+      startAuto();
     });
-  }
-
-  carousel.addEventListener('mouseenter', stopAutoplay);
-  carousel.addEventListener('mouseleave', () => {
-    if (!pauseBtn || pauseBtn.textContent === '⏸') startAutoplay();
   });
 
-  // Touch Swipe
+  wrap.addEventListener('mouseenter', stopAuto);
+  wrap.addEventListener('mouseleave', startAuto);
+
+  // Touch Swipe Support
   let startX = 0;
-  carousel.addEventListener('touchstart', (e) => {
+  wrap.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
+    stopAuto();
   }, { passive: true });
 
-  carousel.addEventListener('touchend', (e) => {
+  wrap.addEventListener('touchend', (e) => {
     const endX = e.changedTouches[0].clientX;
     const diff = startX - endX;
     if (Math.abs(diff) > 40) {
       if (diff > 0) nextSlide();
       else prevSlide();
     }
+    startAuto();
   }, { passive: true });
 
-  updateSlides();
-  startAutoplay();
+  updateCarousel(0);
+  startAuto();
 }
 
 /* ==========================================================================
